@@ -100,6 +100,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await update.message.reply_text('Не понял команду. Выберите из меню: ')
         await update.message.reply_audio(audio='', caption='трек', title='название трека', performer='исполнитель')
+        await update.message.reply_video(video='', supports_streaming=True)
+        await update.message.reply_photo(photo='', caption='')
+        await update.message.reply_document(document='', caption='')
+
+        new_keyboard = ['fds']
+        reply_markup = ReplyKeyboardMarkup(keyboard=new_keyboard, resize_keyboard=True)
+        await update.message.edit_reply_markup(reply_markup=reply_markup)
 
 def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
